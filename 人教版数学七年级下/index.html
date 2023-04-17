@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人教版数学七年级下</title>
+</head>
+
+<body>
+  <div style="width:100%;height:100%;">
+    <img style="width:100%;height:100%;object-fit: contain;" id="image" src="./imgs/1.jpg" />
+  </div>
+  <div style="position: fixed;bottom:0;left:50%;transform: translateX(-50%);">
+    <button onclick="prevImage()">上一页</button>
+    <button onclick="nextImage()">下一页</button>
+    <input id="pageInput" type="text" size="3" />
+    <button onclick="jumpToPage()">跳转</button>
+    <span id="page"></span>
+  </div>
+</body>
+<script type="text/javascript">
+  var currentImage = 1; // 当前显示的图片编号
+  var totalImages = 176; // 总图片数
+
+  function showImage() {
+    var img = document.getElementById('image');
+    img.src = './imgs/' + currentImage + '.jpg';
+    document.getElementById('page').innerHTML = '第 ' + currentImage + ' 页，共 ' + totalImages + ' 页';
+  }
+
+  function prevImage() {
+    if (currentImage > 1) {
+      currentImage--;
+      showImage();
+    }
+  }
+
+  function nextImage() {
+    if (currentImage < totalImages) {
+      currentImage++;
+      showImage();
+    }
+  }
+
+  function jumpToPage() {
+    var input = document.getElementById('pageInput');
+    var page = parseInt(input.value);
+    if (page >= 1 && page <= totalImages) {
+      currentImage = page;
+      showImage();
+    }
+  }
+
+  showImage();
+</script>
+
+</html>
